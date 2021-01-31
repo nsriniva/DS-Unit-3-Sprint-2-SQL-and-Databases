@@ -1,8 +1,31 @@
 import os
 import psycopg2
+from psycopg2 import extras
 import json
 import pandas as pd
 
+
+def execute_values(conn, df, table):
+    """
+    Using psycopg2.extras.execute_values() to insert the dataframe
+    """
+    # Create a list of tupples from the dataframe values
+    tuples = [tuple(x) for x in df.to_numpy()]
+    # Comma-separated dataframe columns
+    cols = ','.join(list(df.columns))
+    # SQL quert to execute
+    query  = f"INSERT INTO {table}({cols}) VALUES %s"
+    cursor = conn.cursor()
+    try:
+        extras.execute_values(cursor, query, tuples)
+        conn.commit()
+    except (Exception, psycopg2.DatabaseError) as error:
+        print("Error: %s" % error)
+        conn.rollback()
+        cursor.close()
+        return 1
+    print("execute_values() done")
+    cursor.close()
 
 
 
@@ -30,6 +53,8 @@ cols = {'Survived':'survived', 'Pclass':'pclass', 'Name':'name', 'Sex':'sex', 'A
 df.rename(columns=cols, inplace=True)
 
 print(df.columns)
+
+df = df.astype({'survived':'bool', 'si_sp_aboard':'bool', 'pa_ch_aboard':'bool'})
 #
 # CREATE THE TABLE
 #
@@ -43,20 +68,19 @@ CREATE TABLE IF NOT EXISTS {table_name} (
   id SERIAL PRIMARY KEY,
   survived BOOLEAN NOT NULL,
   pclass SMALLINT NOT NULL,
-  name varchar(40) NOT NULL,
+  name varchar NOT NULL,
   sex gender NOT NULL,
   age SMALLINT NOT NULL,
   si_sp_aboard BOOLEAN NOT NULL,
-  pa_ch_abouard BOOLEAN NOT NULL,
+  pa_ch_aboard BOOLEAN NOT NULL,
   fare REAL NOT NULL
 );
 """
 print("SQL:", query)
 cursor.execute(query)
-
 connection.commit()
 
-
+execute_values(connection, df, table_name)
 
 cursor.close()
 connection.close()
