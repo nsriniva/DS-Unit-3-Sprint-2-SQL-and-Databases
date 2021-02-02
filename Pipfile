@@ -6,6 +6,9 @@ name = "pypi"
 [packages]
 psycopg2 = "*"
 pandas = "*"
+pymongo = "*"
+dnspython = "*"
+python-dotenv = "*"
 
 [dev-packages]
 
