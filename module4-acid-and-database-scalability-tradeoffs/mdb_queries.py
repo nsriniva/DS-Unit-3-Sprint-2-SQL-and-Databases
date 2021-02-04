@@ -17,5 +17,5 @@ db = client.rpg
 
 char_coll = db.characters
 
-print(char_coll)
+print(char_coll.count_documents({}))
 
