@@ -3,6 +3,8 @@ import psycopg2
 from psycopg2 import extras
 import json
 import pandas as pd
+from dotenv import load_dotenv
+
 
 
 def execute_values(conn, df, table):
@@ -28,6 +30,12 @@ def execute_values(conn, df, table):
     cursor.close()
 
 
+load_dotenv()
+
+DB_NAME = os.getenv("DB_NAME")
+DB_USER = os.getenv("DB_USER")
+DB_PASSWORD = os.getenv("DB_PASSWORD")
+DB_HOST = os.getenv("DB_HOST")
 
 connection = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD, host=DB_HOST)
 print("CONNECTION", type(connection))
@@ -54,7 +62,7 @@ df.rename(columns=cols, inplace=True)
 
 print(df.columns)
 
-df = df.astype({'survived':'bool', 'si_sp_aboard':'bool', 'pa_ch_aboard':'bool'})
+df = df.astype({'survived':'bool'})
 #
 # CREATE THE TABLE
 #
@@ -71,8 +79,8 @@ CREATE TABLE IF NOT EXISTS {table_name} (
   name varchar NOT NULL,
   sex gender NOT NULL,
   age SMALLINT NOT NULL,
-  si_sp_aboard BOOLEAN NOT NULL,
-  pa_ch_aboard BOOLEAN NOT NULL,
+  si_sp_aboard SMALLINT NOT NULL,
+  pa_ch_aboard SMALLINT NOT NULL,
   fare REAL NOT NULL
 );
 """
