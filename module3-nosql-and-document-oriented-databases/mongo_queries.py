@@ -71,10 +71,12 @@ char_records = final_df.to_dict('records')
 #  "intelligence": <VALUE>,
 #  "dexterity": <VALUE>,
 #  "wisdom": <VALUE>,
+#  "num_items": <VALUE>,
 #  "items": [
 #    <ITEM NAME>,
 #    <ITEM NAME>
 #  ],
+#  "num_weapons": <VALUE>,
 #  "weapons" [
 #    <ITEM NAME>,
 #    <ITEM NAME>
