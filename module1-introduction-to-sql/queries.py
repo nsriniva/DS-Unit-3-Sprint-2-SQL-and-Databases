@@ -16,6 +16,6 @@ AVG_CHARACTER_ITEMS = 'SELECT avg(num_items) FROM (' + CHARACTER_ITEMS + ')'
 
 AVG_CHARACTER_WEAPONS = 'SELECT avg(num_weapons) FROM (' + CHARACTER_WEAPONS + ')'
 
-CHARACTER_ITEMS_LIST = 'SELECT character_id, group_concat(DISTINCT  item_id)  as num_items FROM charactercreator_character_inventory GROUP BY character_id'
+CHARACTER_ITEMS_LIST = 'SELECT character_id, group_concat(DISTINCT  item_id)  as items FROM charactercreator_character_inventory GROUP BY character_id'
 
-CHARACTER_WEAPONS_LIST = 'SELECT character_id, group_concat(DISTINCT  item_id)  as num_weapons FROM charactercreator_character_inventory WHERE item_id in (select item_ptr_id from armory_weapon) GROUP BY character_id'
+CHARACTER_WEAPONS_LIST = 'SELECT character_id, group_concat(DISTINCT  item_id)  as weapons FROM charactercreator_character_inventory WHERE item_id in (select item_ptr_id from armory_weapon) GROUP BY character_id'
