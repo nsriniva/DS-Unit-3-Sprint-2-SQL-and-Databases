@@ -110,8 +110,19 @@ Using `sqlite3` in `northwind.py`, answer the following:
 Answer the following questions, baseline ~3-5 sentences each, as if they were interview screening questions (a form you fill when applying for a job):
 
 - In the Northwind database, what is the type of relationship between the `Employee` and `Territory` tables?
+
+In the Northwind database, the `Employee` and `Territory` tables are Independent Entities. The `EmployeeTerritory` table is a Dependent Entity that is used to connect the `Employee` and `Territory` tables.
+The `EmployeeTerritory` table uses the `EmployeeId` and `TerritoryId` foreign keys along with the composite `EmployeeId/TerritoryId` primary key to create a Many to Many relationship between  the `Employee` and `Territory` entities.
+
 - What is a situation where a document store (like MongoDB) is appropriate, and what is a situation where it is not appropriate?
+
+MongoDB would be ideal for applications which require working with  "object"s because documents allow for a more natural mapping as compared to the ORM layer required when working with RDBMS systems.
+The other major advantages are flexible schemas, high performance, high availability and high scalability. The major disadvantage is the lack of transactional ACID properties which make it unsuitable for applications which require them.
+
 - What is "NewSQL", and what is it trying to achieve?
+
+NewSQL` is a new approach that seeks to the marry the best of the SQL and NoSQL worlds. This essentially translates to new Database systems that offer   transactional/ACID caapabilities with the ability to be highly performant/available and scale horizonally.
+
 
 ### Part 5 - Turn it in!
 Provide all the files you wrote (`demo_data.py`, `northwind.py`, `demo_data.sqlite3`), as well as this file with your answers to part 4, directly to your TL. You're also encouraged to include the output from your queries as docstring comments, to facilitate grading and feedback. Thanks for your hard work!
