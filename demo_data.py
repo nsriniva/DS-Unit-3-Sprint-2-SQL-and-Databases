@@ -35,3 +35,9 @@ print(f'{xy_at_least_5 = }')
 unique_y = c.execute('select count(distinct y) from demo').fetchone()[0]
 
 print(f'{unique_y = }')
+
+'''
+row_count = 3
+xy_at_least_5 = 2
+unique_y = 2
+'''

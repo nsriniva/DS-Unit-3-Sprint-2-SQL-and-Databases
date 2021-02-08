@@ -31,3 +31,12 @@ print(f'{largest_category = }')
 most_territories = ' '.join(c.execute('select Employee.FirstName, Employee.LastName, count(EmployeeTerritory.TerritoryId) as num_territories from EmployeeTerritory join Employee on EmployeeTerritory.EmployeeId  = Employee.Id group by EmployeeTerritory.EmployeeId order by num_territories DESC').fetchone()[:2])
 
 print(f'{most_territories = }')
+
+'''
+expensive_items = ('Côte de Blaye', 'Thüringer Rostbratwurst', 'Mishi Kobe Niku', "Sir Rodney's Marmalade", 'Carnarvon Tigers', 'Raclette Courdavault', 'Manjimup Dried Apples', 'Tarte au sucre', 'Ipoh Coffee', 'Rössle Sauerkraut')
+avg_hire_age = 37.22222222222222
+avg_age_by_city = [('Kirkland', 29.0), ('London', 32.5), ('Redmond', 56.0), ('Seattle', 40.0), ('Tacoma', 40.0)]
+ten_most_expensive = [('Côte de Blaye', 'Aux joyeux ecclésiastiques'), ('Thüringer Rostbratwurst', 'Plutzer Lebensmittelgroßmärkte AG'), ('Mishi Kobe Niku', 'Tokyo Traders'), ("Sir Rodney's Marmalade", 'Specialty Biscuits, Ltd.'), ('Carnarvon Tigers', 'Pavlova, Ltd.'), ('Raclette Courdavault', 'Gai pâturage'), ('Manjimup Dried Apples', "G'day, Mate"), ('Tarte au sucre', "Forêts d'érables"), ('Ipoh Coffee', 'Leka Trading'), ('Rössle Sauerkraut', 'Plutzer Lebensmittelgroßmärkte AG')]
+largest_category = 'Confections'
+most_territories = 'Robert King'
+'''
