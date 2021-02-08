@@ -9,8 +9,10 @@ pandas = "*"
 pymongo = "*"
 dnspython = "*"
 python-dotenv = "*"
+flake8 = "*"
 
 [dev-packages]
+flake8 = "*"
 
 [requires]
 python_version = "3.8"
